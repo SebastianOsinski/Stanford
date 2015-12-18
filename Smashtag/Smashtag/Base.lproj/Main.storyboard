@@ -83,7 +83,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="PID-lo-tbK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="ygI-JE-TtN">
+                        <barButtonItem key="rightBarButtonItem" image="images" id="ygI-JE-TtN">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="pJl-Kh-J8C" kind="show" identifier="Show All Images" id="zRX-Tf-g05"/>
@@ -378,6 +378,9 @@
             <point key="canvasLocation" x="-519" y="1271"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="images" width="22" height="22"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iNl-j4-Z5X"/>
         <segue reference="yMC-VR-XnE"/>
