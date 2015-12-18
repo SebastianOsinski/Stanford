@@ -97,7 +97,6 @@ class CalculatorViewController: UIViewController {
             }
         }
         history.text = "\(brain)" + " ="
-        //print("\(brain)")
     }
 
     @IBAction func setMemory() {
@@ -124,17 +123,5 @@ class CalculatorViewController: UIViewController {
         
         performSegueWithIdentifier("Show Graph", sender: nil)
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        var destination: UIViewController? = segue.destinationViewController
-//        if let navCon = destination as? UINavigationController {
-//            destination = navCon.visibleViewController
-//        }
-//        if let gvc = destination as? GraphViewController {
-//            if segue.identifier == "Show Graph" {
-//            }
-//        }
-//    }
-    
 }
 
