@@ -10,22 +10,13 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     var image: UIImage? {
         didSet {
-            updateUI()
+            imageView.image = image
+            spinner.stopAnimating()
         }
     }
-    
-    @IBOutlet weak var imageView: UIImageView?
-
-    func updateUI() {
-        imageView?.image = nil
-        
-        if let img = image {
-            imageView?.image = img
-            imageView?.sizeToFit()
-            //spinner.stopAnimating()
-        }
-    }
-
 }

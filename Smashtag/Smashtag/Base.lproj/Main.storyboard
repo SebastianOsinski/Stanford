@@ -127,20 +127,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9YO-tJ-eZE">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9YO-tJ-eZE">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sDd-nz-Nv6">
+                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="9YO-tJ-eZE" secondAttribute="bottom" id="JKC-rF-qsA"/>
                                     <constraint firstAttribute="trailing" secondItem="9YO-tJ-eZE" secondAttribute="trailing" id="Uui-XK-uPr"/>
+                                    <constraint firstItem="sDd-nz-Nv6" firstAttribute="centerX" secondItem="TpN-gL-pfs" secondAttribute="centerX" id="dCO-sw-bqu"/>
+                                    <constraint firstItem="sDd-nz-Nv6" firstAttribute="centerY" secondItem="TpN-gL-pfs" secondAttribute="centerY" id="gEP-ng-Job"/>
                                     <constraint firstItem="9YO-tJ-eZE" firstAttribute="top" secondItem="TpN-gL-pfs" secondAttribute="top" id="hlE-tD-fpD"/>
                                     <constraint firstItem="9YO-tJ-eZE" firstAttribute="leading" secondItem="TpN-gL-pfs" secondAttribute="leading" id="xgI-ms-AuO"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="9YO-tJ-eZE" id="cqH-wZ-kQW"/>
+                                    <outlet property="spinner" destination="sDd-nz-Nv6" id="9Gi-FN-YNb"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

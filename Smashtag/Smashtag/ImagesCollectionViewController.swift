@@ -10,14 +10,14 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class ImagesCollectionViewController: UICollectionViewController {
+class ImagesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var mediaItems: [MediaItem]? {
         didSet {
             collectionView?.reloadData()
         }
     }
-
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -32,11 +32,14 @@ class ImagesCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
         
         if let url = mediaItems?[indexPath.row].url {
+            cell.image = nil
+            cell.spinner.startAnimating()
             ImageService.sharedInstance.fetchImageFromURL(url) { (image) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.image = image
                 }
             }
+            
         }
         return cell
     }
@@ -61,4 +64,33 @@ class ImagesCollectionViewController: UICollectionViewController {
         }
     }
 
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let width = self.view.bounds.width
+        let height = self.view.bounds.height
+        
+        if width < height {
+            return CGSizeMake(width * 0.33, width * 0.33)
+        } else {
+            return CGSizeMake(width * 0.2, width * 0.2)
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        collectionViewLayout.invalidateLayout()
+    }
 }
