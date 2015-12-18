@@ -10,6 +10,7 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
+    @IBOutlet weak var graphButton: UIButton!
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
     @IBOutlet weak var changeSignButton: UIButton!
@@ -28,6 +29,11 @@ class CalculatorViewController: UIViewController {
             
             userIsInTheMiddleOfTypingANumber = false
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        graphButton.enabled = false
     }
     
     @IBAction func appendDigit(sender: UIButton) {
@@ -55,6 +61,7 @@ class CalculatorViewController: UIViewController {
             }
             history.text = "\(brain)" + " ="
         }
+        graphButton.enabled = brain.isProgramValid()
     }
     
     @IBAction func clear() {
@@ -64,6 +71,7 @@ class CalculatorViewController: UIViewController {
         brain.clearVariables()
         
         userIsInTheMiddleOfTypingANumber = false
+        graphButton.enabled = false
     }
     
     @IBAction func undo() {
@@ -84,7 +92,7 @@ class CalculatorViewController: UIViewController {
         }else {
             operate(changeSignButton)
         }
-
+        graphButton.enabled = brain.isProgramValid()
     }
     
     @IBAction func enter() {
@@ -97,6 +105,7 @@ class CalculatorViewController: UIViewController {
             }
         }
         history.text = "\(brain)" + " ="
+        graphButton.enabled = brain.isProgramValid()
     }
 
     @IBAction func setMemory() {

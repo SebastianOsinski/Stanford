@@ -42,6 +42,17 @@ class CalculatorBrain: CustomStringConvertible {
                 return precedence
             }
         }
+        
+        var valency: Int {
+            switch self {
+            case .Operand, .Constant, .Variable:
+                return 0
+            case .UnaryOperation:
+                return 1
+            case .BinaryOperation:
+                return 2
+            }
+        }
     }
     
     private var opStack = [Op]()
@@ -164,6 +175,17 @@ class CalculatorBrain: CustomStringConvertible {
         }
     
         return (nil, ops)
+    }
+    
+    func isProgramValid() -> Bool {
+        var stackSize = 0
+        for op in opStack {
+            stackSize += 1 - op.valency
+            if stackSize <= 0 {
+                return false
+            }
+        }
+        return stackSize == 1
     }
     
     func evaluate() -> Double? {
