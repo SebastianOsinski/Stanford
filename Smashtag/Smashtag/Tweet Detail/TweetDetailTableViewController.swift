@@ -69,12 +69,10 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
         switch section {
         case CellTypes.Images:
             let cell = tableView.dequeueReusableCellWithIdentifier(SmashtagConstants.TweetDetails.ImageDetailTableViewCell, forIndexPath: indexPath) as! TweetImageDetailTableViewCell
-            if tweet != nil {
-                if let url = media?[item].url {
-                    ImageService.sharedInstance.fetchImageFromURL(url) { (image) -> Void in
-                        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                            cell.tweetImage = image
-                        }
+            if let url = media?[item].url {
+                ImageService.sharedInstance.fetchImageFromURL(url) { (image) -> Void in
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        cell.tweetImage = image
                     }
                 }
             }
