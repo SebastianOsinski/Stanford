@@ -44,9 +44,9 @@
 		910438311B6196200023F522 /* TweetImageDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetImageDetailTableViewCell.swift; sourceTree = "<group>"; };
 		910438331B61985E0023F522 /* SmashtagConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashtagConstants.swift; sourceTree = "<group>"; };
 		913B52AC1C24865F000991D4 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
-		91E2A2021B645DF9001246DB /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
-		91E2A2041B645EE6001246DB /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		91EAB3CF1B61F54C002F53DB /* ZoomImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomImageViewController.swift; sourceTree = "<group>"; };
+		91E2A2021B645DF9001246DB /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagesCollectionViewController.swift; path = ../ImagesCollectionViewController.swift; sourceTree = "<group>"; };
+		91E2A2041B645EE6001246DB /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCollectionViewCell.swift; path = ../ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		91EAB3CF1B61F54C002F53DB /* ZoomImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomImageViewController.swift; path = "Tweet Detail/ZoomImageViewController.swift"; sourceTree = "<group>"; };
 		EC6876111A898EF4006B5FDB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6876151A898EF4006B5FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC6876161A898EF4006B5FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,11 +86,31 @@
 			isa = PBXGroup;
 			children = (
 				910438311B6196200023F522 /* TweetImageDetailTableViewCell.swift */,
-				91EAB3CF1B61F54C002F53DB /* ZoomImageViewController.swift */,
 				9104382E1B6195AA0023F522 /* TweetDetailTableViewController.swift */,
 			);
 			name = "Tweet Detail";
-			sourceTree = "<group>";
+			path = "Smashtag/Tweet Detail";
+			sourceTree = SOURCE_ROOT;
+		};
+		913B52AE1C24B06C000991D4 /* Images Collection */ = {
+			isa = PBXGroup;
+			children = (
+				91E2A2021B645DF9001246DB /* ImagesCollectionViewController.swift */,
+				91E2A2041B645EE6001246DB /* ImageCollectionViewCell.swift */,
+			);
+			name = "Images Collection";
+			path = "Smashtag/Images Collection";
+			sourceTree = SOURCE_ROOT;
+		};
+		913B52AF1C24B0D4000991D4 /* Tweet */ = {
+			isa = PBXGroup;
+			children = (
+				EC6876361A898F4D006B5FDB /* TweetTableViewController.swift */,
+				EC6876411A8994BB006B5FDB /* TweetTableViewCell.swift */,
+			);
+			name = Tweet;
+			path = Smashtag/Tweet;
+			sourceTree = SOURCE_ROOT;
 		};
 		EC6876081A898EF4006B5FDB = {
 			isa = PBXGroup;
@@ -114,12 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				EC68761A1A898EF4006B5FDB /* Main.storyboard */,
+				913B52AE1C24B06C000991D4 /* Images Collection */,
 				910438301B6195F00023F522 /* Tweet Detail */,
-				EC6876361A898F4D006B5FDB /* TweetTableViewController.swift */,
-				EC6876411A8994BB006B5FDB /* TweetTableViewCell.swift */,
+				913B52AF1C24B0D4000991D4 /* Tweet */,
+				91EAB3CF1B61F54C002F53DB /* ZoomImageViewController.swift */,
 				9104382C1B6194A50023F522 /* RecentSearchesTableViewController.swift */,
-				91E2A2021B645DF9001246DB /* ImagesCollectionViewController.swift */,
-				91E2A2041B645EE6001246DB /* ImageCollectionViewCell.swift */,
 				EC6876381A898FC6006B5FDB /* Twitter */,
 				EC6876141A898EF4006B5FDB /* Supporting Files */,
 				910438331B61985E0023F522 /* SmashtagConstants.swift */,
@@ -164,8 +183,9 @@
 				EC68763B1A898FC6006B5FDB /* TwitterRequest.swift */,
 				EC68763C1A898FC6006B5FDB /* User.swift */,
 			);
-			path = Twitter;
-			sourceTree = "<group>";
+			name = Twitter;
+			path = Smashtag/Twitter;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
