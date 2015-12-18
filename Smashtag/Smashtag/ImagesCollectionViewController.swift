@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class ImagesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var mediaItems: [MediaItem]? {
@@ -29,7 +27,7 @@ class ImagesCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SmashtagConstants.ImagesCollection.ImageCollectionViewCell, forIndexPath: indexPath) as! ImageCollectionViewCell
         
         if let url = mediaItems?[indexPath.row].url {
             cell.image = nil

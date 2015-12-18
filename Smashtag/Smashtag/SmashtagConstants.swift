@@ -28,5 +28,8 @@ struct SmashtagConstants {
         static let ShowZoomedImage = "Show Zoomed Image"
     }
     
+    struct ImagesCollection {
+        static let ImageCollectionViewCell = "ImageCollectionViewCell"
+    }
     
 }
