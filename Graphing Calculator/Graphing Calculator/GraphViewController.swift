@@ -44,14 +44,14 @@ class GraphViewController: UIViewController, GraphViewDataSource, UIPopoverPrese
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "Show Stats" {
-            if let svc = segue.destinationViewController as? StatsViewController {
-                if let ppc = svc.popoverPresentationController {
-                    ppc.delegate = self
-                }
-                svc.minValue = graphView.minimumValue
-                svc.maxValue = graphView.maximumValue
+        if segue.identifier == "Show Stats",
+            let svc = segue.destinationViewController as? StatsViewController {
+            
+            if let ppc = svc.popoverPresentationController {
+                ppc.delegate = self
             }
+            svc.minValue = graphView.minimumValue
+            svc.maxValue = graphView.maximumValue
         }
     }
 }
