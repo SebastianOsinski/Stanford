@@ -109,29 +109,13 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case CellTypes.Images:
-            if media == nil || media!.count == 0 {
-                return nil
-            } else {
-                return "Images"
-            }
+            return media.flatMap { $0.count > 0 ? "Images" : nil }
         case CellTypes.URLs:
-            if URLs == nil || URLs!.count == 0 {
-                return nil
-            } else {
-                return "URLs"
-            }
+            return URLs.flatMap { $0.count > 0 ? "URLs" : nil }
         case CellTypes.Hashtags:
-            if hashtags == nil || hashtags!.count == 0 {
-                return nil
-            } else {
-                return "Hashtags"
-            }
+            return hashtags.flatMap { $0.count > 0 ? "Hashtags" : nil }
         case CellTypes.Mentions:
-            if userMentions == nil || userMentions!.count == 0 {
-                return nil
-            } else {
-                return "Users"
-            }
+            return userMentions.flatMap { $0.count > 0 ? "Mentions" : nil }
         default:
             return nil
         }
@@ -150,7 +134,6 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
                 sfc.delegate = self
                 presentViewController(sfc, animated: true, completion: nil)
             }
-            
         case CellTypes.Hashtags:
             performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowSearchForDetails, sender: indexPath)
         case CellTypes.Mentions:
