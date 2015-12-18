@@ -47,20 +47,20 @@ protocol GraphViewDataSource: class {
         maximumValue = -Double.infinity
         minimumValue = Double.infinity
         if dataSource != nil {
-            var x: CGFloat
+            var startX: CGFloat = bounds.minX
             
-            for x = bounds.minX; x < bounds.maxX; x++ {
-                if let y = getYforX(x) {
-                    path.moveToPoint(CGPoint(x: x, y: y))
-                    x++
-                    break
-                }
+            while (getYforX(startX) == nil) {
+                startX += 1
             }
             
-            for x; x < bounds.maxX; x++ {
+            path.moveToPoint(CGPoint(x: startX, y: getYforX(startX)!))
+            
+            var x = startX
+            while x < bounds.maxX {
                 if let y = getYforX(x) {
                     path.addLineToPoint(CGPoint(x: x, y: y))
                 }
+                x += 1
             }
         }
         return path
