@@ -155,7 +155,7 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
         
         switch section {
         case CellTypes.Images:
-            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowZoomedImage, sender: indexPath)
+            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowZoomedImage, sender: nil)
         case CellTypes.URLs:
             if let url = NSURL(string: URLs![item]) {
                 let sfc = SFSafariViewController(URL: url)
@@ -164,9 +164,9 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
             }
             
         case CellTypes.Hashtags:
-            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowSearchForDetails, sender: indexPath)
+            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowSearchForDetails, sender: nil)
         case CellTypes.Mentions:
-            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowSearchForDetails, sender: indexPath)
+            performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowSearchForDetails, sender: nil)
         default:
             break
         }
@@ -180,30 +180,31 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SmashtagConstants.TweetDetails.ShowZoomedImage {
-            if let vc = segue.destinationViewController as? ZoomImageViewController {
-                let indexPath = sender as! NSIndexPath
-                    ImageService.sharedInstance.fetchImageFromURL(media![indexPath.item].url) { (image) -> Void in
-                        dispatch_async(dispatch_get_main_queue()) {
-                            vc.image = image
-                        }
-                    }
-            }
-        } else if segue.identifier == SmashtagConstants.TweetDetails.ShowSearchForDetails {
-            if let vc = segue.destinationViewController as? TweetTableViewController {
-                let indexPath = sender as! NSIndexPath
-                var query: String? = nil
-                switch indexPath.section {
-                case CellTypes.Hashtags:
-                    query = hashtags![indexPath.item]
-                case CellTypes.Mentions:
-                    query = userMentions![indexPath.item]
-                default:
-                    break
-                }
+        if segue.identifier == SmashtagConstants.TweetDetails.ShowZoomedImage,
+            let vc = segue.destinationViewController as? ZoomImageViewController,
+            let indexPath = tableView.indexPathForSelectedRow {
                 
-                vc.searchText = query                
+            ImageService.sharedInstance.fetchImageFromURL(media![indexPath.item].url) { (image) -> Void in
+                dispatch_async(dispatch_get_main_queue()) {
+                    vc.image = image
+                }
             }
+        } else if segue.identifier == SmashtagConstants.TweetDetails.ShowSearchForDetails,
+            let vc = segue.destinationViewController as? TweetTableViewController {
+                
+            let indexPath = sender as! NSIndexPath
+            var query: String? = nil
+                
+            switch indexPath.section {
+            case CellTypes.Hashtags:
+                query = hashtags![indexPath.item]
+            case CellTypes.Mentions:
+                query = userMentions![indexPath.item]
+            default:
+                break
+            }
+            
+            vc.searchText = query
         }
     }
 }
