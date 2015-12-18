@@ -23,10 +23,11 @@ class ImageService {
             var image: UIImage? = nil
             if let cachedImage = self.imageCache.objectForKey(url) as? UIImage {
                 image = cachedImage
-            } else if let imageData = NSData(contentsOfURL: url),
-                let image = UIImage(data: imageData) {
-                    
-                self.imageCache.setObject(image, forKey: url)
+            } else if let imageData = NSData(contentsOfURL: url) {
+                image = UIImage(data: imageData)
+                if image != nil {
+                    self.imageCache.setObject(image!, forKey: url)
+                }
             }
             handler(image)
         }
