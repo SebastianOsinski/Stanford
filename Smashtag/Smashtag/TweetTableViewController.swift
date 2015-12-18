@@ -137,20 +137,18 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         performSegueWithIdentifier(SmashtagConstants.TweetDetails.SegueIdentifier, sender: indexPath)
     }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SmashtagConstants.TweetDetails.SegueIdentifier {
-            if let vc = segue.destinationViewController as? TweetDetailTableViewController {
-                let indexPath = sender as! NSIndexPath
-                vc.tweet = tweets[indexPath.section][indexPath.item]
-                navigationItem.backBarButtonItem = UIBarButtonItem(title: searchText, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-            }
-        } else if segue.identifier == SmashtagConstants.RecentSearches.ShowAllImages {
-            if let vc = segue.destinationViewController as? ImagesCollectionViewController {
-                let media = tweets.flatMap { $0 }.map { $0.media }.flatMap { $0 }
-                vc.mediaItems = media
-            }
+        if segue.identifier == SmashtagConstants.TweetDetails.SegueIdentifier,
+            let vc = segue.destinationViewController as? TweetDetailTableViewController,
+            let indexPath = sender as? NSIndexPath {
+                
+            vc.tweet = tweets[indexPath.section][indexPath.item]
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: searchText, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        } else if segue.identifier == SmashtagConstants.RecentSearches.ShowAllImages,
+            let vc = segue.destinationViewController as? ImagesCollectionViewController {
+                
+            let media = tweets.flatMap { $0 }.map { $0.media }.flatMap { $0 }
+            vc.mediaItems = media
         }
     }
-    
 }

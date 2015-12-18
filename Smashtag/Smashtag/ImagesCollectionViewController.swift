@@ -44,13 +44,13 @@ class ImagesCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowZoomedImage, sender: nil)
+        performSegueWithIdentifier(SmashtagConstants.TweetDetails.ShowZoomedImage, sender: indexPath)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SmashtagConstants.TweetDetails.ShowZoomedImage,
             let vc = segue.destinationViewController as? ZoomImageViewController,
-            let indexPath = collectionView?.indexPathsForSelectedItems()?.first,
+            let indexPath = sender as? NSIndexPath,
             let url = mediaItems?[indexPath.row].url {
                 
             ImageService.sharedInstance.fetchImageFromURL(url) { (image) -> Void in
