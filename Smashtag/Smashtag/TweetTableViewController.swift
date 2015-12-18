@@ -37,10 +37,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         refresh()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     // MARK: - Refreshing
@@ -151,7 +147,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             }
         } else if segue.identifier == SmashtagConstants.RecentSearches.ShowAllImages {
             if let vc = segue.destinationViewController as? ImagesCollectionViewController {
-                let media = tweets.reduce([], combine: +).map { $0.media }.reduce([], combine: +)
+                let media = tweets.flatMap { $0 }.map { $0.media }.flatMap { $0 }
                 vc.mediaItems = media
             }
         }

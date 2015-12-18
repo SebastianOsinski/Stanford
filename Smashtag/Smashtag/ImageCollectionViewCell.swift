@@ -16,7 +16,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView?
 
     func updateUI() {
         imageView?.image = nil
@@ -25,7 +25,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
             imageView?.image = img
             imageView?.sizeToFit()
             //spinner.stopAnimating()
-            print(imageView?.frame.size)
         }
     }
 
