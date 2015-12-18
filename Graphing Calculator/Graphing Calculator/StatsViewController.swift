@@ -15,9 +15,10 @@ class StatsViewController: UIViewController {
             minLabel.text = "Local minimum value: \(round(minValue * 1000) / 1000.0)"
         }
     }
+    
     @IBOutlet private weak var maxLabel: UILabel! {
         didSet {
-            maxLabel.text = "Local minimum value: \(round(maxValue * 1000) / 1000.0)"
+            maxLabel.text = "Local maximum value: \(round(maxValue * 1000) / 1000.0)"
         }
     }
     
@@ -29,7 +30,7 @@ class StatsViewController: UIViewController {
     
     var maxValue: Double = 0 {
         didSet {
-            maxLabel?.text = "Local minimum value: \(round(maxValue * 1000) / 1000.0)"
+            maxLabel?.text = "Local maximum value: \(round(maxValue * 1000) / 1000.0)"
         }
     }
     
