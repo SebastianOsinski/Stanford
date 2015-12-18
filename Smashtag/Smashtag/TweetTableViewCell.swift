@@ -62,11 +62,7 @@ class TweetTableViewCell: UITableViewCell
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
             
             if let profileImageURL = tweet.user.profileImageURL {
-                if let imageData = NSData(contentsOfURL: profileImageURL) { // blocks main thread!
-                    tweetProfileImageView?.image = UIImage(data: imageData)
-                }
-                
-                fetchImageFromURL(profileImageURL) { (image) -> Void in
+                ImageService.sharedInstance.fetchImageFromURL(profileImageURL) { (image) -> Void in
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tweetProfileImageView?.image = image
                     }
@@ -83,26 +79,4 @@ class TweetTableViewCell: UITableViewCell
         }
 
     }
-    
-    private func fetchImageFromURL(url: NSURL, handler: (UIImage?) -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
-            let cache = (UIApplication.sharedApplication().delegate as! AppDelegate).imageCache
-            var image: UIImage? = nil
-            if let cachedImage = cache.objectForKey(url) as? UIImage {
-                print("cache")
-                image = cachedImage
-            } else {
-                print("download")
-                if let imageData = NSData(contentsOfURL: url) {
-                    image = UIImage(data: imageData)
-                    if image != nil {
-                        cache.setObject(image!, forKey: url)
-                    }
-                }
-            }
-            handler(image)
-        }
-        
-    }
-
 }

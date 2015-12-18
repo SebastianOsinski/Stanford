@@ -47,7 +47,6 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 4
     }
     
@@ -73,27 +72,6 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
         }
     }
     
-    private func fetchImageFromURL(url: NSURL, handler: (UIImage?) -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
-            let cache = (UIApplication.sharedApplication().delegate as! AppDelegate).imageCache
-            var image: UIImage? = nil
-            if let cachedImage = cache.objectForKey(url) as? UIImage {
-                print("cache")
-                image = cachedImage
-            } else {
-                print("download")
-                if let imageData = NSData(contentsOfURL: url) {
-                    image = UIImage(data: imageData)
-                    if image != nil {
-                        cache.setObject(image!, forKey: url)
-                    }
-                }
-            }
-            handler(image)
-        }
-    }
-
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         let item = indexPath.item
@@ -103,7 +81,7 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
             let cell = tableView.dequeueReusableCellWithIdentifier(SmashtagConstants.TweetDetails.ImageDetailTableViewCell, forIndexPath: indexPath) as! TweetImageDetailTableViewCell
             if tweet != nil {
                 if let url = media?[item].url {
-                    fetchImageFromURL(url) { (image) -> Void in
+                    ImageService.sharedInstance.fetchImageFromURL(url) { (image) -> Void in
                         dispatch_async(dispatch_get_main_queue()) { () -> Void in
                             cell.tweetImage = image
                         }
@@ -197,14 +175,15 @@ class TweetDetailTableViewController: UITableViewController, SFSafariViewControl
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SmashtagConstants.TweetDetails.ShowZoomedImage {
             if let vc = segue.destinationViewController as? ZoomImageViewController {
                 let indexPath = sender as! NSIndexPath
-                    fetchImageFromURL(media![indexPath.item].url) { (image) -> Void in
+                    ImageService.sharedInstance.fetchImageFromURL(media![indexPath.item].url) { (image) -> Void in
                         dispatch_async(dispatch_get_main_queue()) {
                             vc.image = image
                         }
