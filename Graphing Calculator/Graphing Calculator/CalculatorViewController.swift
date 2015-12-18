@@ -24,11 +24,8 @@ class CalculatorViewController: UIViewController {
             return nil
         }
         set {
-            if newValue != nil {
-                display.text = "\(newValue!)"
-            } else {
-                display.text = " "
-            }
+            display.text = newValue.map { $0.description } ?? " "
+            
             userIsInTheMiddleOfTypingANumber = false
         }
     }
