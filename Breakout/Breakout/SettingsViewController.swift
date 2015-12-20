@@ -10,12 +10,6 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    struct SettingsConstants {
-        static let NumberOfRows = "NumberOfRows"
-        static let BricksPerRow = "BricksPerRow"
-        static let PaddleWidth = "PaddleWidth"
-    }
-    
     @IBOutlet weak var numberOfRowsLabel: UILabel!
     @IBOutlet weak var bricksPerRowLabel: UILabel!
     @IBOutlet weak var paddleWidthLabel: UILabel!
