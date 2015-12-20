@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     var paddleGestureRecogniser: UIPanGestureRecognizer!
     
     @IBOutlet weak var gameView: UIView!
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        bricksPerRow = defaults.integerForKey(SettingsConstants.BricksPerRow)
+        numberOfRows = defaults.integerForKey(SettingsConstants.NumberOfRows)
+        
+        
         gameView.subviews.forEach { $0.removeFromSuperview() }
         
         let width = gameView.bounds.width
@@ -47,6 +52,8 @@ class GameViewController: UIViewController {
                 gameView.addSubview(brick)
             }
         }
+        
+        paddleWidthRatio = CGFloat(defaults.doubleForKey(SettingsConstants.PaddleWidth))
         
         let paddleOrigin = CGPoint(x: width * (1 - paddleWidthRatio) / 2, y: height * 0.9)
         let paddleSize = CGSize(width: width * paddleWidthRatio, height: height * 0.05)
