@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Game" id="sNl-6O-z4v"/>
+                    <tabBarItem key="tabBarItem" title="Game" image="game" id="sNl-6O-z4v"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="GiL-bH-VI4"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="GiL-bH-VI4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdy-Wv-LIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,4 +62,8 @@
             <point key="canvasLocation" x="416" y="401"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="game" width="25" height="25"/>
+        <image name="settings" width="25" height="25"/>
+    </resources>
 </document>
