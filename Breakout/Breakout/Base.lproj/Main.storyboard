@@ -41,19 +41,19 @@
             </objects>
             <point key="canvasLocation" x="1260" y="157"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="p6b-tD-lEW">
             <objects>
                 <tableViewController id="53T-5t-Qzm" customClass="SettingsViewController" customModule="Breakout" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P1K-JH-R0q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="P1K-JH-R0q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="ifY-UN-SaN">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NumberOfRows" id="WpV-ig-hIZ">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WpV-ig-hIZ" id="mUN-G4-uQb">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -90,7 +90,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BricksPerRow" id="ptL-m2-KL6">
-                                        <rect key="frame" x="0.0" y="108" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ptL-m2-KL6" id="V7J-2R-D6N">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -127,7 +127,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaddleWidth" id="MXS-pY-N1m">
-                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MXS-pY-N1m" id="zGr-I2-53G">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -165,7 +165,7 @@
                             <outlet property="delegate" destination="53T-5t-Qzm" id="4F1-7p-6nN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qSg-aD-czI"/>
+                    <navigationItem key="navigationItem" title="Settings" id="qSg-aD-czI"/>
                     <connections>
                         <outlet property="bricksPerRowLabel" destination="x1o-hE-DHL" id="MtO-rR-cLX"/>
                         <outlet property="bricksPerRowStepper" destination="REA-b9-XII" id="2Ou-Ut-Sy8"/>
