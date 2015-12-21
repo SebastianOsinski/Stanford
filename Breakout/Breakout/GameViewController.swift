@@ -17,9 +17,9 @@ class GameViewController: UIViewController {
     var paddle: UIView?
     var paddleGestureRecogniser: UIPanGestureRecognizer!
     
-    @IBOutlet weak var gameView: UIView!
     var ball: UIView?
     
+    @IBOutlet weak var gameView: BezierPathsView!
     let defaults = NSUserDefaults.standardUserDefaults()
     
     lazy var animator: UIDynamicAnimator = { [unowned self] in

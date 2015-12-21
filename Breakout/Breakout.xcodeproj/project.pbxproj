@@ -10,6 +10,7 @@
 		910D74111C276D51007716C9 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D74101C276D51007716C9 /* DefaultSettings.plist */; };
 		910D74131C277339007716C9 /* SettingsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910D74121C277339007716C9 /* SettingsConstants.swift */; };
 		911BB35C1C280DF000A058A4 /* BreakoutBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911BB35B1C280DF000A058A4 /* BreakoutBehavior.swift */; };
+		911BB3631C283E0700A058A4 /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911BB3621C283E0700A058A4 /* BezierPathsView.swift */; };
 		91265B031C2749C5003DE24D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91265B021C2749C5003DE24D /* AppDelegate.swift */; };
 		91265B051C2749C5003DE24D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91265B041C2749C5003DE24D /* GameViewController.swift */; };
 		91265B081C2749C5003DE24D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91265B061C2749C5003DE24D /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		910D74101C276D51007716C9 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		910D74121C277339007716C9 /* SettingsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsConstants.swift; sourceTree = "<group>"; };
 		911BB35B1C280DF000A058A4 /* BreakoutBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakoutBehavior.swift; sourceTree = "<group>"; };
+		911BB3621C283E0700A058A4 /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
 		91265AFF1C2749C5003DE24D /* Breakout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breakout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91265B021C2749C5003DE24D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91265B041C2749C5003DE24D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				910D74101C276D51007716C9 /* DefaultSettings.plist */,
 				910D74121C277339007716C9 /* SettingsConstants.swift */,
 				911BB35B1C280DF000A058A4 /* BreakoutBehavior.swift */,
+				911BB3621C283E0700A058A4 /* BezierPathsView.swift */,
 			);
 			path = Breakout;
 			sourceTree = "<group>";
@@ -149,8 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				911BB3631C283E0700A058A4 /* BezierPathsView.swift in Sources */,
 				910D74131C277339007716C9 /* SettingsConstants.swift in Sources */,
 				91265B051C2749C5003DE24D /* GameViewController.swift in Sources */,
+				911BB35C1C280DF000A058A4 /* BreakoutBehavior.swift in Sources */,
 				91265B031C2749C5003DE24D /* AppDelegate.swift in Sources */,
 				91265B151C274ADE003DE24D /* SettingsViewController.swift in Sources */,
 			);
