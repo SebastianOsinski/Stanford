@@ -14,14 +14,13 @@ class BreakoutBehavior: UIDynamicBehavior {
     
     lazy var collider: UICollisionBehavior = {
         let behavior = UICollisionBehavior()
-        behavior.translatesReferenceBoundsIntoBoundary = true
         return behavior
     }()
     
-    lazy var dropBehavior: UIDynamicItemBehavior = {
-        let behavior = UIDynamicItemBehavior()
-        behavior.allowsRotation = false
-        behavior.elasticity = 0.75
+    lazy var push: UIPushBehavior = {
+        let behavior = UIPushBehavior()
+        behavior.magnitude = 2
+        behavior.angle = 1/2 * CGFloat(M_PI)
         return behavior
     }()
     
@@ -29,20 +28,19 @@ class BreakoutBehavior: UIDynamicBehavior {
         super.init()
         addChildBehavior(gravity)
         addChildBehavior(collider)
-        addChildBehavior(dropBehavior)
+        addChildBehavior(push)
     }
     
     func addBall(ball: UIView) {
         dynamicAnimator?.referenceView?.addSubview(ball)
         gravity.addItem(ball)
         collider.addItem(ball)
-        dropBehavior.addItem(ball)
+        push.addItem(ball)
     }
     
     func removeBall(ball: UIView) {
         gravity.removeItem(ball)
         collider.removeItem(ball)
-        dropBehavior.removeItem(ball)
     }
     
     func addBarrier(path: UIBezierPath, named name: String) {
@@ -50,4 +48,7 @@ class BreakoutBehavior: UIDynamicBehavior {
         collider.addBoundaryWithIdentifier(name, forPath: path)
     }
     
+    func removeBarrier(named name: String) {
+        collider.removeBoundaryWithIdentifier(name)
+    }
 }
