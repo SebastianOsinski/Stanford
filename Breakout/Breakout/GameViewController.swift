@@ -39,7 +39,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         animator.addBehavior(breakoutBehavior)
         paddleGestureRecogniser = UIPanGestureRecognizer(target: self, action: "paddleMoved:")
         
-        breakoutBehavior.gravity.action = { [unowned self] in
+        breakoutBehavior.dynamic.action = { [unowned self] in
             if let ballCenter = self.ball?.center {
                 if !self.gameView.pointInside(ballCenter, withEvent: nil) {
                     

@@ -10,37 +10,37 @@ import UIKit
 
 class BreakoutBehavior: UIDynamicBehavior {
     
-    let gravity = UIGravityBehavior()
-    
     lazy var collider: UICollisionBehavior = {
         let behavior = UICollisionBehavior()
         return behavior
     }()
     
-    lazy var push: UIPushBehavior = {
-        let behavior = UIPushBehavior()
-        behavior.magnitude = 2
-        behavior.angle = 1/2 * CGFloat(M_PI)
+    lazy var dynamic: UIDynamicItemBehavior = {
+        let behavior = UIDynamicItemBehavior()
+        behavior.friction = 0
+        behavior.elasticity = 1
+        behavior.resistance = 0
+        behavior.allowsRotation = false
         return behavior
     }()
     
     override init() {
         super.init()
-        addChildBehavior(gravity)
         addChildBehavior(collider)
-        addChildBehavior(push)
+        addChildBehavior(dynamic)
     }
     
     func addBall(ball: UIView) {
         dynamicAnimator?.referenceView?.addSubview(ball)
-        gravity.addItem(ball)
         collider.addItem(ball)
-        push.addItem(ball)
+        dynamic.addItem(ball)
+        let velocity = CGPoint(x: 300, y: 300)
+        dynamic.addLinearVelocity(velocity, forItem: ball)
     }
     
     func removeBall(ball: UIView) {
-        gravity.removeItem(ball)
         collider.removeItem(ball)
+        dynamic.removeItem(ball)
     }
     
     func addBarrier(path: UIBezierPath, named name: String) {
