@@ -8,7 +8,11 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UICollisionBehaviorDelegate {
+    
+    struct GameConstants {
+        static let Paddle = "Paddle"
+    }
     
     var bricksPerRow: Int = 5
     var numberOfRows: Int = 4
@@ -83,7 +87,7 @@ class GameViewController: UIViewController {
         paddle!.addGestureRecognizer(paddleGestureRecogniser)
         
         gameView.addSubview(paddle!)
-        breakoutBehavior.addBarrier(UIBezierPath(rect: paddleRect), named: "paddle")
+        breakoutBehavior.addBarrier(UIBezierPath(rect: paddleRect), named: GameConstants.Paddle)
     }
     
     func configureBall() {
@@ -106,7 +110,7 @@ class GameViewController: UIViewController {
             
             if let paddleView = sender.view {
                 paddleView.center = CGPointMake(paddleView.center.x + translation.x, paddleView.center.y)
-                breakoutBehavior.addBarrier(UIBezierPath(rect: paddleView.frame), named: "paddle")
+                breakoutBehavior.addBarrier(UIBezierPath(rect: paddleView.frame), named: GameConstants.Paddle)
                 sender.setTranslation(CGPoint.zero, inView: paddleView)
             }
         }
