@@ -22,6 +22,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     var paddleGestureRecogniser: UIPanGestureRecognizer!
     
     var ball: UIView?
+    var bricks = [String: UIView]()
     
     @IBOutlet weak var gameView: BezierPathsView!
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -50,6 +51,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
                 }
             }
         }
+        
+        breakoutBehavior.collider.collisionDelegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,6 +64,8 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     }
     
     func configureBricks() {
+        bricks.removeAll()
+        
         bricksPerRow = defaults.integerForKey(SettingsConstants.BricksPerRow)
         numberOfRows = defaults.integerForKey(SettingsConstants.NumberOfRows)
         let width = gameView.bounds.width
@@ -81,6 +86,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
                 
                 gameView.addSubview(brick)
                 breakoutBehavior.addBarrier(UIBezierPath(rect: brickFrame), named: "\(row)-\(col)")
+                bricks["\(row)-\(col)"] = brick
             }
         }
     }
@@ -128,12 +134,25 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
             }
         }
     }
+    
     func gameOver() {
         let ac = UIAlertController(title: "Game Over", message: ";(", preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "Play again", style: .Default, handler: { _ in
             self.configureBall()
         }))
         self.presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
+        if let name = identifier as? String where name != GameConstants.Paddle {
+            breakoutBehavior.removeBarrier(named: name)
+            if let brick = bricks[name] {
+                brick.removeFromSuperview()
+                bricks[name] = nil
+            }
+        }
+        
+        breakoutBehavior.push.magnitude = breakoutBehavior.push.magnitude * -1
     }
 }
 
