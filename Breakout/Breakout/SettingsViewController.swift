@@ -60,6 +60,6 @@ class SettingsViewController: UITableViewController {
     
     @IBAction func paddleWidthChanged(sender: UIStepper) {
         defaults.setDouble(sender.value, forKey: SettingsConstants.PaddleWidth)
-        paddleWidthLabel.text = "Paddle Width: \(sender.value)"
+        paddleWidthLabel.text = "Paddle width: \(sender.value)"
     }
 }
