@@ -37,6 +37,19 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         super.viewDidLoad()
         animator.addBehavior(breakoutBehavior)
         paddleGestureRecogniser = UIPanGestureRecognizer(target: self, action: "paddleMoved:")
+        
+        breakoutBehavior.gravity.action = { [unowned self] in
+            if let ballCenter = self.ball?.center {
+                if !self.gameView.pointInside(ballCenter, withEvent: nil) {
+                    
+                    self.ball?.backgroundColor = UIColor.redColor()
+                    self.breakoutBehavior.removeBall(self.ball!)
+                    self.ball!.removeFromSuperview()
+                    self.ball = nil
+                    self.gameOver()
+                }
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -114,6 +127,13 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
                 sender.setTranslation(CGPoint.zero, inView: paddleView)
             }
         }
+    }
+    func gameOver() {
+        let ac = UIAlertController(title: "Game Over", message: ";(", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Play again", style: .Default, handler: { _ in
+            self.configureBall()
+        }))
+        self.presentViewController(ac, animated: true, completion: nil)
     }
 }
 
