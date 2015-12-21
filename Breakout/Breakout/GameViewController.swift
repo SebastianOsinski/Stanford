@@ -12,6 +12,9 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     
     struct GameConstants {
         static let Paddle = "Paddle"
+        static let LeftWall = "LeftWall"
+        static let RightWall = "RightWall"
+        static let Ceiling = "Ceiling"
     }
     
     var bricksPerRow: Int = 5
@@ -58,6 +61,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     override func viewDidLayoutSubviews() {
         gameView.subviews.forEach { $0.removeFromSuperview() }
         
+        configureWalls()
         configureBricks()
         configurePaddle()
         configureBall()
@@ -98,7 +102,7 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         paddleWidthRatio = CGFloat(defaults.doubleForKey(SettingsConstants.PaddleWidth))
         
         let paddleOrigin = CGPoint(x: width * (1 - paddleWidthRatio) / 2, y: height * 0.9)
-        let paddleSize = CGSize(width: width * paddleWidthRatio, height: height * 0.01)
+        let paddleSize = CGSize(width: width * paddleWidthRatio, height: height * 0.05)
         let paddleRect = CGRect(origin: paddleOrigin, size: paddleSize)
         
         paddle = UIView(frame: paddleRect)
@@ -122,6 +126,23 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
         
         breakoutBehavior.addBall(ball!)
     }
+    
+    func configureWalls() {
+        let leftWallPath = UIBezierPath()
+        leftWallPath.moveToPoint(gameView.bounds.origin)
+        leftWallPath.addLineToPoint(CGPoint(x: gameView.bounds.origin.x, y: gameView.frame.height))
+        breakoutBehavior.addBarrier(leftWallPath, named: GameConstants.LeftWall)
+        
+        let rightWallPath = UIBezierPath()
+        rightWallPath.moveToPoint(CGPoint(x: gameView.bounds.width, y: gameView.bounds.origin.y))
+        rightWallPath.addLineToPoint(CGPoint(x: gameView.bounds.width, y: gameView.bounds.height))
+        breakoutBehavior.addBarrier(rightWallPath, named: GameConstants.RightWall)
+        
+        let ceiling = UIBezierPath()
+        ceiling.moveToPoint(gameView.bounds.origin)
+        ceiling.addLineToPoint(CGPoint(x: gameView.bounds.width, y: gameView.bounds.origin.y))
+        breakoutBehavior.addBarrier(ceiling, named: GameConstants.Ceiling)
+    }
 
     func paddleMoved(sender: UIPanGestureRecognizer) {
         if sender.state == .Changed || sender.state == .Ended {
@@ -144,15 +165,15 @@ class GameViewController: UIViewController, UICollisionBehaviorDelegate {
     }
     
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint) {
-        if let name = identifier as? String where name != GameConstants.Paddle {
+        let nonRemovable = [GameConstants.Paddle, GameConstants.LeftWall, GameConstants.RightWall, GameConstants.Ceiling]
+        
+        if let name = identifier as? String where !nonRemovable.contains(name) {
             breakoutBehavior.removeBarrier(named: name)
             if let brick = bricks[name] {
                 brick.removeFromSuperview()
                 bricks[name] = nil
             }
         }
-        
-        breakoutBehavior.push.magnitude = breakoutBehavior.push.magnitude * -1
     }
 }
 
